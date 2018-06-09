@@ -8,53 +8,56 @@ os.environ['TF_MIN_GPU_MULTIPROCESSOR_COUNT'] = '5'
 
 from keras.models import Sequential
 from keras import optimizers
-from keras.layers import (Dense, Dropout, LSTM, GRU, Flatten)
+from keras.layers import (Dense, Dropout, LSTM, Flatten)
 
 
+def get_model(loop,
+              input_shape        = (None, None),
+              activation         = 'tanh',
+              dropout            = 0.1,
+              kernel_initializer = 'glorot_uniform',
+              bias_initializer   = 'glorot_uniform',
+              recurrent_dropout  = 0):
 
-
-def get_model(loop, input_shape):
     model = Sequential()
+    model.add(LSTM(16,
+                   input_shape        = input_shape,
+                   return_sequences   = True,
+                   activation         = activation,
+                   dropout            = dropout,
+                   kernel_initializer = kernel_initializer,
+                   bias_initializer   = bias_initializer,
+                   recurrent_dropout  = recurrent_dropout))
 
-    if loop == 'Loop_0':
-        model.add(LSTM(6, return_sequences=True, input_shape=input_shape))
-        model.add(LSTM(6, return_sequences=True))
-        model.add(LSTM(6, return_sequences=True))
-        model.add(LSTM(4, return_sequences=True))
-        model.add(LSTM(4))
+    for _ in range(6):
+        model.add(LSTM(8,
+                       return_sequences   = True,
+                       activation         = activation,
+                       kernel_initializer = kernel_initializer,
+                       dropout            = dropout,
+                       bias_initializer   = bias_initializer,
+                       recurrent_dropout  = recurrent_dropout))
 
-    elif loop == 'Loop_1':
-        model.add(LSTM(6, return_sequences=True, input_shape=input_shape))
-        model.add(LSTM(6, return_sequences=True))
-        model.add(LSTM(6, return_sequences=True))
-        model.add(LSTM(4, return_sequences=True))
-        model.add(LSTM(4))
+    model.add(LSTM(6,
+                   return_sequences   = False,
+                   activation         = activation,
+                   kernel_initializer = kernel_initializer,
+                   dropout            = dropout,
+                   bias_initializer   = bias_initializer,
+                   recurrent_dropout  = recurrent_dropout))
 
-    elif loop == 'Loop_2':
-        model.add(LSTM(6, return_sequences=True, input_shape=input_shape))
-        model.add(LSTM(6, return_sequences=True))
-        model.add(LSTM(6, return_sequences=True))
-        model.add(LSTM(4, return_sequences=True))
-        model.add(LSTM(4))
-
-    elif loop == 'Loop_3':
-        model.add(LSTM(6, return_sequences=True, input_shape=input_shape))
-        model.add(LSTM(6, return_sequences=True))
-        model.add(LSTM(6, return_sequences=True))
-        model.add(LSTM(4, return_sequences=True))
-        model.add(LSTM(4))
-
-    elif loop == 'Loop_4':
-        model.add(LSTM(6, return_sequences=True, input_shape=input_shape))
-        model.add(LSTM(6, return_sequences=True))
-        model.add(LSTM(6, return_sequences=True))
-        model.add(LSTM(4, return_sequences=True))
-        model.add(LSTM(4))
-
-    else:
-        sys.exit('ERROR: No network architecture for requested iteration')
+    for _ in range(8):
+        model.add(Dense(8, activation=activation))
 
     model.add(Dense(1))
+
+    # model.add(LSTM(6, return_sequences=True, input_shape=input_shape))
+    # model.add(LSTM(6, return_sequences=True))
+    # model.add(LSTM(6, return_sequences=True))
+    # model.add(LSTM(4, return_sequences=True))
+    # model.add(LSTM(4))
+    # model.add(Dense(1))
+
     return model
 
 
