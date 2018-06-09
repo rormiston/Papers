@@ -17,6 +17,8 @@ ana.set_plot_style()
 
 from ConfigParser import ConfigParser
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from keras.models import Sequential
+from keras.layers import LSTM, Dense
 
 
 def run_network(
@@ -79,20 +81,22 @@ def run_network(
     if data_type == 'real':
         values = np.delete(dataset, 1, axis=1)  # get rid of bkgd
 
-    # bandpass filter (scale first?)
-    if preFilter:
-        values = ppr.phase_filter(values,
-                                  fs      = fs,
-                                  order   = N_bp,
-                                  lowcut  = lowcut,
-                                  highcut = highcut)
-
     check_loops = ['Loop_1', 'Loop_2']
     if any(loop==check_loops[i] for i in range(len(check_loops))):
-        # get lookback
-        lookback = ppr.lstm_lookback(scaled, ts, 1)
-        darm = lookback.values[:, scaled.shape[1] * ts]
-        to_drop = [scaled.shape[1] * i for i in range(ts + 1)]
+        scaler = MinMaxScaler(feature_range=(0, 1))
+        scaled = scaler.fit_transform(values)
+
+        # bandpass filter
+        if preFilter:
+            scaled = ppr.phase_filter(scaled,
+                                      fs      = fs,
+                                      order   = N_bp,
+                                      lowcut  = lowcut,
+                                      highcut = highcut)
+
+        lookback = ppr.lstm_lookback(scaled, 2, 1)
+        darm = lookback.values[:, scaled.shape[1] * 2]
+        to_drop = [scaled.shape[1] * i for i in range(2 + 1)]
         lookback.drop(lookback.columns[to_drop], axis=1, inplace=True)
 
         # split into train and test sets
@@ -102,15 +106,15 @@ def run_network(
         test   = values[tfrac:, :]
 
         # split into input and outputs
-        train_X, train_y = train, darm[:tfrac]
-        test_X,  test_y  = test,  darm[tfrac:]
+        x_train, y_train = train, darm[:tfrac]
+        x_test,  y_test  = test,  darm[tfrac:]
 
         # reshape input to be 3D [samples, timesteps, features]
-        train_X = train_X.reshape((train_X.shape[0], 1, train_X.shape[1]))
-        test_X  = test_X.reshape((test_X.shape[0], 1, test_X.shape[1]))
+        x_train = x_train.reshape((x_train.shape[0], 1, x_train.shape[1]))
+        x_test  = x_test.reshape((x_test.shape[0], 1, x_test.shape[1]))
 
         # design network
-        input_shape = (train_X.shape[1], train_X.shape[2])
+        input_shape = (x_train.shape[1], x_train.shape[2])
         batch_size = min(int(dataset.shape[0] / 100), 4096)
         model = Sequential()
         model.add(LSTM(6, return_sequences=True, input_shape=input_shape))
@@ -121,6 +125,14 @@ def run_network(
         model.add(Dense(1))
 
     else:
+        # bandpass filter
+        if preFilter:
+            values = ppr.phase_filter(values,
+                                      fs      = fs,
+                                      order   = N_bp,
+                                      lowcut  = lowcut,
+                                      highcut = highcut)
+
         # normalize and standardize
         min_max_scaler = MinMaxScaler(feature_range=(0, 1))
         minmax         = min_max_scaler.fit_transform(values)
