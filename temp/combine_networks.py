@@ -188,12 +188,14 @@ def run_network(
     sys.stdout.flush()
     yhat = model.predict(x_test)
 
-    # rescale standard deviation first
-    yhat = np.concatenate((yhat, scaled[:len(yhat), :-1]), axis=1)
-    yhat = std_scaler.inverse_transform(yhat)
-
-    # rescale min max
-    yhat = min_max_scaler.inverse_transform(yhat)
+    if any(loop==check_loops[i] for i in range(len(check_loops))):
+        # rescale min max
+        yhat = min_max_scaler.inverse_transform(yhat)
+    else:
+        # rescale standard deviation, then min_max
+        yhat = np.concatenate((yhat, scaled[:len(yhat), :-1]), axis=1)
+        yhat = std_scaler.inverse_transform(yhat)
+        yhat = min_max_scaler.inverse_transform(yhat)
 
     # get target value (original data instead of rescaling)
     inv_yhat = yhat[:, 0]
