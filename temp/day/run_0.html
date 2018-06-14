@@ -1,0 +1,756 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html lang="en">
+<head>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <base href=""/>
+
+    <link media="all" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet"></link>
+    <link media="all" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" type="text/css" rel="stylesheet" ></link>
+    <link media="all" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css" type="text/css" rel="stylesheet" ></link>
+    <link media="all" href="/~detchar/summary/day/20180405/static/bootstrap-ligo.min.css" type="text/css" rel="stylesheet" ></link>
+    <link media="all" href="/~detchar/summary/day/20180405/static/gwsumm.min.css" type="text/css" rel="stylesheet" ></link>
+
+    <title>DeepClean</title>
+
+    <script src="//code.jquery.com/jquery-1.12.3.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js" type="text/javascript"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="/~detchar/summary/day/20180405/static/bootstrap-ligo.min.js" type="text/javascript"></script>
+    <script src="/~detchar/summary/day/20180405/static/gwsumm.min.js" type="text/javascript"></script>
+
+</head>
+
+<style style="text/css">
+    .hoverTable{
+        width:100%; 
+        border-collapse:collapse; 
+        font-family: arial, sans-serif;
+    }
+    .hoverTable td{ 
+        padding:8px;
+        border:#dddddd 1px solid;
+        text-align: left;
+    }
+    .hoverTable th{ 
+        padding:8px;
+        border:#dddddd 1px solid;
+        text-align: left;
+        font-size: 20;
+    }
+    .hoverTable tr:nth-child(2n) {
+      background-color: #dddddd;
+    }
+
+    .hoverTable tr:nth-child(2n):hover, .hoverTable tr:hover {
+      background-color: #a8ebb2;
+    }
+
+    .hoverTable tr {
+      background-color: white;
+    }
+</style>
+
+<body>
+
+<header class="navbar navbar-fixed-top navbar-all" role="banner">
+    <div class="container">
+        <button class="navbar-toggle" data-toggle="collapse" type="button" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <a class="navbar-brand step-back" onclick="stepDate(-1)" title="Step back">&laquo;</a>
+        <a id="calendar" data-viewmode="0" title="Show/hide calendar"
+            data-date-format="dd-mm-yyyy" data-date="05-04-2018" class="navbar-brand dropdown-toggle">
+                04-05-2018
+            <b class="caret"></b></a>
+
+        <a class="navbar-brand step-forward" onclick="stepDate(1)" title="Step forwards">&raquo;</a>
+        
+        <nav class="collapse navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+
+                <li>
+                <a href="index.html">Home</a>
+                </li>
+
+                <li>
+                    <a href="/~detchar/summary/day/20180405">Detchar Page </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+    
+    <div class="panel-default panel">
+        <div class="panel-heading">
+            <h3>Total Subtraction Run 0</h3>
+        </div>
+        <div class="panel-body">
+            <img src ="total_sub-0.png" style="float: left; width: 70%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+        </div>
+    </div>
+    
+
+    <div class="panel-default panel">
+        <div class="panel-heading">
+            <h3>PSD Validation Run 0</h3>
+        </div>
+        <div class="panel-body">
+            
+            <img src ="Loop_0_frequency_validation.png-0" style="float: left; width: 32%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+            
+            <img src ="Loop_1_frequency_validation.png-0" style="float: left; width: 32%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+            
+            <img src ="Loop_2_frequency_validation.png-0" style="float: left; width: 32%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+            
+        </div>
+        
+        <div class="panel-body">
+            
+            <img src ="Loop_3_frequency_validation.png-0" style="float: left; width: 32%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+            
+            <img src ="Loop_4_frequency_validation.png-0" style="float: left; width: 32%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+            
+        </div>
+        
+    </div>
+    <div class="panel-default panel">
+        <div class="panel-heading">
+            <h3>Loss Run 0</h3>
+        </div>
+        <div class="panel-body">
+            
+            <img src ="Loop_0_loss.png-0" style="float: left; width: 32%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+            
+            <img src ="Loop_1_loss.png-0" style="float: left; width: 32%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+            
+            <img src ="Loop_2_loss.png-0" style="float: left; width: 32%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+            
+        </div>
+        
+        <div class="panel-body">
+            
+            <img src ="Loop_3_loss.png-0" style="float: left; width: 32%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+            
+            <img src ="Loop_4_loss.png-0" style="float: left; width: 32%; margin-right: 1%; margin-bottom: 0.5em;"/> 
+            
+        </div>
+        
+    </div>
+
+
+    <div class="panel-default panel">
+        <div class="panel-heading">
+            <h3>Network Params</h3>
+        </div>
+        <div class="panel-body">
+            <table class="hoverTable">
+                <tr>
+                    <th>parameters</th>
+                    
+                        <th>Loop_0</th>
+                    
+                        <th>Loop_1</th>
+                    
+                        <th>Loop_2</th>
+                    
+                        <th>Loop_3</th>
+                    
+                        <th>Loop_4</th>
+                    
+                </tr>
+                
+                
+                    <tr>
+                    
+                        
+                            <td>beta_1</td>
+                        
+                        <td>0.9</td>
+                    
+                        
+                        <td>0.9</td>
+                    
+                        
+                        <td>0.9</td>
+                    
+                        
+                        <td>0.9</td>
+                    
+                        
+                        <td>0.9</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>beta_2</td>
+                        
+                        <td>0.999</td>
+                    
+                        
+                        <td>0.999</td>
+                    
+                        
+                        <td>0.999</td>
+                    
+                        
+                        <td>0.999</td>
+                    
+                        
+                        <td>0.999</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>decay</td>
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>epochs</td>
+                        
+                        <td>3</td>
+                    
+                        
+                        <td>30</td>
+                    
+                        
+                        <td>30</td>
+                    
+                        
+                        <td>35</td>
+                    
+                        
+                        <td>30</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>epsilon</td>
+                        
+                        <td>1e-08</td>
+                    
+                        
+                        <td>1e-08</td>
+                    
+                        
+                        <td>1e-08</td>
+                    
+                        
+                        <td>1e-08</td>
+                    
+                        
+                        <td>1e-08</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>fmax</td>
+                        
+                        <td>256.0</td>
+                    
+                        
+                        <td>256.0</td>
+                    
+                        
+                        <td>256.0</td>
+                    
+                        
+                        <td>256.0</td>
+                    
+                        
+                        <td>256.0</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>fmin</td>
+                        
+                        <td>4.0</td>
+                    
+                        
+                        <td>4.0</td>
+                    
+                        
+                        <td>4.0</td>
+                    
+                        
+                        <td>4.0</td>
+                    
+                        
+                        <td>4.0</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>hc_offset</td>
+                        
+                        <td>0.0</td>
+                    
+                        
+                        <td>1.0</td>
+                    
+                        
+                        <td>1.0</td>
+                    
+                        
+                        <td>0.0</td>
+                    
+                        
+                        <td>0.0</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>highcut</td>
+                        
+                        <td>12.0</td>
+                    
+                        
+                        <td>14.0</td>
+                    
+                        
+                        <td>18.0</td>
+                    
+                        
+                        <td>40.0</td>
+                    
+                        
+                        <td>63.0</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>lowcut</td>
+                        
+                        <td>3.0</td>
+                    
+                        
+                        <td>10.0</td>
+                    
+                        
+                        <td>14.0</td>
+                    
+                        
+                        <td>34.0</td>
+                    
+                        
+                        <td>57.0</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>loss</td>
+                        
+                        <td>mse</td>
+                    
+                        
+                        <td>mae</td>
+                    
+                        
+                        <td>mae</td>
+                    
+                        
+                        <td>mae</td>
+                    
+                        
+                        <td>mae</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>lr</td>
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>momentum</td>
+                        
+                        <td>0.0</td>
+                    
+                        
+                        <td>0.0</td>
+                    
+                        
+                        <td>0.0</td>
+                    
+                        
+                        <td>0.0</td>
+                    
+                        
+                        <td>0.0</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>nesterov</td>
+                        
+                        <td>False</td>
+                    
+                        
+                        <td>False</td>
+                    
+                        
+                        <td>False</td>
+                    
+                        
+                        <td>False</td>
+                    
+                        
+                        <td>False</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>N_bp</td>
+                        
+                        <td>8</td>
+                    
+                        
+                        <td>8</td>
+                    
+                        
+                        <td>8</td>
+                    
+                        
+                        <td>8</td>
+                    
+                        
+                        <td>8</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>optimizer</td>
+                        
+                        <td>adam</td>
+                    
+                        
+                        <td>adam</td>
+                    
+                        
+                        <td>adam</td>
+                    
+                        
+                        <td>adam</td>
+                    
+                        
+                        <td>adam</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>plotDir</td>
+                        
+                        <td>../deepclean/Plots</td>
+                    
+                        
+                        <td>../deepclean/Plots</td>
+                    
+                        
+                        <td>../deepclean/Plots</td>
+                    
+                        
+                        <td>../deepclean/Plots</td>
+                    
+                        
+                        <td>../deepclean/Plots</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>postFilter</td>
+                        
+                        <td>True</td>
+                    
+                        
+                        <td>True</td>
+                    
+                        
+                        <td>True</td>
+                    
+                        
+                        <td>True</td>
+                    
+                        
+                        <td>True</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>preFilter</td>
+                        
+                        <td>True</td>
+                    
+                        
+                        <td>True</td>
+                    
+                        
+                        <td>True</td>
+                    
+                        
+                        <td>True</td>
+                    
+                        
+                        <td>True</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>rho</td>
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                        
+                        <td>None</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>subsystems</td>
+                        
+                        <td>[&#39;all&#39;]</td>
+                    
+                        
+                        <td>[&#39;all&#39;]</td>
+                    
+                        
+                        <td>[&#39;all&#39;]</td>
+                    
+                        
+                        <td>[&#39;CAL&#39;]</td>
+                    
+                        
+                        <td>[&#39;CAL&#39;]</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>tfrac</td>
+                        
+                        <td>0.5</td>
+                    
+                        
+                        <td>0.5</td>
+                    
+                        
+                        <td>0.5</td>
+                    
+                        
+                        <td>0.5</td>
+                    
+                        
+                        <td>0.5</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>ts</td>
+                        
+                        <td>2</td>
+                    
+                        
+                        <td>2</td>
+                    
+                        
+                        <td>2</td>
+                    
+                        
+                        <td>2</td>
+                    
+                        
+                        <td>2</td>
+                    
+                    </tr>
+                
+                    <tr>
+                    
+                        
+                            <td>verbose</td>
+                        
+                        <td>1</td>
+                    
+                        
+                        <td>1</td>
+                    
+                        
+                        <td>1</td>
+                    
+                        
+                        <td>1</td>
+                    
+                        
+                        <td>1</td>
+                    
+                    </tr>
+                
+
+            </table>
+
+        </div>
+    </div>
+
+    <div class="panel-default panel">
+        <div class="panel-heading">
+            <h3>Channel List Run 0</h3>
+        </div>
+        <div class="panel-body">
+            <table class="hoverTable">
+                
+                <tr><td>H1:ASC-CHARD_P_OUT_DQ</td></tr>
+                
+                <tr><td>H1:ASC-CHARD_Y_OUT_DQ</td></tr>
+                
+                <tr><td>H1:ASC-DHARD_P_OUT_DQ</td></tr>
+                
+                <tr><td>H1:ASC-DHARD_Y_OUT_DQ</td></tr>
+                
+                <tr><td>H1:CAL-CS_LINE_SUM_DQ</td></tr>
+                
+                <tr><td>H1:CAL-PCALX_EXC_SUM_DQ</td></tr>
+                
+                <tr><td>H1:CAL-PCALY_EXC_SUM_DQ</td></tr>
+                
+                <tr><td>H1:CAL-PCALY_TX_PD_OUT_DQ</td></tr>
+                
+                <tr><td>H1:GDS-CALIB_STRAIN</td></tr>
+                
+                <tr><td>H1:IMC-WFS_A_DC_PIT_OUT_DQ</td></tr>
+                
+                <tr><td>H1:IMC-WFS_A_DC_YAW_OUT_DQ</td></tr>
+                
+                <tr><td>H1:IMC-WFS_B_DC_PIT_OUT_DQ</td></tr>
+                
+                <tr><td>H1:IMC-WFS_B_DC_YAW_OUT_DQ</td></tr>
+                
+                <tr><td>H1:LSC-CAL_LINE_SUM_DQ</td></tr>
+                
+                <tr><td>H1:LSC-MICH_IN1_DQ</td></tr>
+                
+                <tr><td>H1:LSC-PRCL_IN1_DQ</td></tr>
+                
+                <tr><td>H1:LSC-SRCL_IN1_DQ</td></tr>
+                
+                <tr><td>H1:PEM-EY_MAINSMON_EBAY_1_DQ</td></tr>
+                
+                <tr><td>H1:PEM-EY_MAINSMON_EBAY_2_DQ</td></tr>
+                
+                <tr><td>H1:PEM-EY_MAINSMON_EBAY_3_DQ</td></tr>
+                
+                <tr><td>H1:PSL-DIAG_BULLSEYE_PIT_OUT_DQ</td></tr>
+                
+                <tr><td>H1:PSL-DIAG_BULLSEYE_WID_OUT_DQ</td></tr>
+                
+                <tr><td>H1:PSL-DIAG_BULLSEYE_YAW_OUT_DQ</td></tr>
+                
+                <tr><td>H1:SUS-ETMY_L3_CAL_LINE_OUT_DQ</td></tr>
+                
+            </table>
+        </div>
+    </div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>DeepClean v0.1 &copy; 2017.</p>
+                <p>This software was created at the California Institute of Technology
+                and the University of Minnesota by Rich Ormiston, Rana Adhikari,
+                Michael Coughlin and Gabriele Vajente.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
