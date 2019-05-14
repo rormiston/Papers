@@ -1,2 +1,0 @@
-include versioneer.py
-include DeepClean/_version.py
